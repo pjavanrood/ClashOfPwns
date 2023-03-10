@@ -1,0 +1,72 @@
+GET http://localhost:8080/
+
+#########
+
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "name": "Parshan",
+  "email": "email@gmail.com",
+  "username": "PJavanrood",
+  "password": "password1234"
+}
+
+
+###########
+
+
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "name": "Parshan",
+  "email": "email@gmail.com",
+  "username": "PJavanrood",
+  "password": "password1234",
+  "rePassword": "password1234"
+}
+
+
+###########
+
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "name": "Parshan",
+  "email": "email@gmail.com",
+  "username": "PJavanrood",
+  "password": "password1234",
+  "rePassword": "password1234"
+}
+
+###########
+
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "PJavanrood",
+  "password": "password1234"
+}
+
+
+###########
+
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "PJavanrood",
+  "password": "password12345"
+}
+
+
+###########
+
+
+###########
+
+
+###########
