@@ -25,6 +25,7 @@ function loginClicked(event) {
 
     postLogin(username, password);
 
+
 }
 
 
@@ -78,7 +79,19 @@ async function postLogin(username, password) {
     
     let resultDiv = document.getElementById('loginResult');
 
-    resultDiv.innerHTML = "";
+    //handleLoginResult(data);
+    
+    if(data.result)
+        window.location = '/breakout';
+
+    // resultDiv.innerHTML = "";
         
-    resultDiv.appendChild(document.createTextNode(data.message));
+    // resultDiv.appendChild(document.createTextNode(data.message));
 }
+
+
+// function handleLoginResult(data) {
+//     if(data.result) {
+//         window.lo
+//     }
+// }

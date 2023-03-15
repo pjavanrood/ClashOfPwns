@@ -1,0 +1,6 @@
+* Keep an instance of  the chess game on server, so players can access on re-load
+
+
+* Fix the color assignment - DONE
+* Figure out what the problem is with sendMove() - DONE
+

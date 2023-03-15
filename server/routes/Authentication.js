@@ -1,13 +1,15 @@
 const express = require('express');
 const path = require('path')
-
 const router = express.Router();
-
 router.use(express.json());
-router.use(express.static(path.resolve(__dirname, '../../public')));
 
 
-router.get('/', (req, res) => res.sendFile(__dirname, './public/index.html'));
+
+router.get('/', (req, res) => {
+    //res.session.authorized = false;
+    res.sendFile(path.join(__dirname, '../../public/index.html'));
+    //res.send('hi');
+});
 
 const Model = require('../Database');
 
@@ -36,6 +38,10 @@ router.post(loginEndPoint, async (req, res) => {
 
     if(result.result) {
         res.status(201).send(result);
+        //res.session.authorized = true;
+        // res.setHeader("Content-Type", "text/html");
+        // res.redirect('http://localhost:8080/breakout');
+        //res.sendFile(__dirname, '../public/breakoutRoom.html');
     } else {
         res.status(400).send(result);
     }
@@ -86,28 +92,6 @@ async function checkCredentials(username, pwd) {
             message: "Incorrect Password"
         };
     }
-    // for(let i = 0; i < users.length; i++) {
-    //     let user = users[i];
-
-    //     if(user.username == username) {
-    //         if(await bcrypt.compare(pwd, user.hashedPassword)) {
-    //             return {
-    //                 result: true,
-    //                 message: "Verified"
-    //             };
-    //         } else {
-    //             return {
-    //                 result: false,
-    //                 message: "Incorrect Password"
-    //             };
-    //         }
-    //     }
-    // }
-
-    // return {
-    //     result: false,
-    //     message: "Username not found"
-    // };
 }
 
 
@@ -195,9 +179,6 @@ async function registerUser(reqBody) {
         hashedPassword: hashedPassword,
     };
 
-
-    //users.push(user);
-
     let userModel = new Model(user);
 
     try {
@@ -244,18 +225,6 @@ async function checkUserEmailExist(username, email) {
         return true;
     else
         return false;
-
-
-
-    // let result = users.find(function (obj) {
-    //     return (obj.username == username || obj.email == email);
-    // });
-
-    // if(typeof result == 'undefined')
-    //     return true;
-    
-    // else
-    //     return false;
 }
 
 
