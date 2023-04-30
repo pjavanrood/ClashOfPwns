@@ -4,7 +4,6 @@ const port = 8080;
 const app = express();
 const session = require('express-session')
 
-const socketPort = 8080;
 const http = require('http');
 const { Server } = require("socket.io");
 const server = http.createServer(app);
@@ -17,10 +16,23 @@ module.exports.app = app;
 module.exports.io = io;
 
 
-server.listen(socketPort, () => {
-    console.log('listening on Port ' + socketPort);
+server.listen(port, () => {
+    console.log('listening on Port ' + port);
 });
 
+
+app.use(
+    session({
+        name: 'sid',
+        saveUninitialized: false,
+        resave: false,
+        secret: 'ABCDEFG',
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 2, //2hours
+            sameSite: true
+        }
+    })
+);
 
 const authRouter = require('./routes/Authentication');
 app.use('/', authRouter);

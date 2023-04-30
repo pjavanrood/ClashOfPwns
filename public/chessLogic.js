@@ -102,3 +102,8 @@ socket.on('player-moved', (position) => {
   board.position(position);
   game.load(position);
 })
+
+socket.on('load-game', (position) => {
+  board.position(position);
+  game.load(position);
+})

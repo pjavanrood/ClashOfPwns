@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8080'
+const baseUrl = ''
 
 document.getElementById('registerBtn').addEventListener('click', regiterClicked);
 document.getElementById('loginBtn').addEventListener('click', loginClicked);
@@ -53,9 +53,13 @@ async function postRegister(name, username, password, rePassword, email) {
     
     let resultDiv = document.getElementById('registerResult');
 
-    resultDiv.innerHTML = "";
-        
-    resultDiv.appendChild(document.createTextNode(data.message));
+    if(data.result) {
+        window.location = '/breakout';
+    } else {
+        resultDiv.innerHTML = "";
+        resultDiv.appendChild(document.createTextNode(data.message));
+    }
+
 }
 
 async function postLogin(username, password) {
@@ -75,18 +79,18 @@ async function postLogin(username, password) {
 
     let data = await result.json();
 
-    console.log(data);
+    //console.log(data);
     
     let resultDiv = document.getElementById('loginResult');
 
     //handleLoginResult(data);
     
-    if(data.result)
+    if(data.result) {
         window.location = '/breakout';
-
-    // resultDiv.innerHTML = "";
-        
-    // resultDiv.appendChild(document.createTextNode(data.message));
+    } else {
+        resultDiv.innerHTML = "";
+        resultDiv.appendChild(document.createTextNode(data.message));
+    }
 }
 
 

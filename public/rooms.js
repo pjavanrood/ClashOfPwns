@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8080'
+const baseUrl = ''
 
 document.getElementById('createRoomBtn').addEventListener('click', createRoom);
 document.getElementById('joinBtn').addEventListener('click', joinRoom);

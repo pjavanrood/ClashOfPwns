@@ -37,6 +37,7 @@ router.post(loginEndPoint, async (req, res) => {
     let result = await userLogin(req.body);
 
     if(result.result) {
+        req.session.userStatus = 'AUTHENTICATED';
         res.status(201).send(result);
         //res.session.authorized = true;
         // res.setHeader("Content-Type", "text/html");
@@ -119,6 +120,7 @@ router.post(registerEndpoint, async(req, res) => {
     let result = await registerUser(req.body);
 
     if(result.result) {
+        req.session.userStatus = 'AUTHENTICATED';
         res.status(201).send(result);
     } else {
         res.status(400).send(result);
